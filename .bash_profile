@@ -23,5 +23,11 @@ alias bu="b update"
 alias ber="be rails"
 alias berake="be rake"
 alias mig="berake db:migrate"
-alias spec="be rspec $1 --color --require spec_helper --format progress"
+alias spec="be rspec $1"
+
+# PG aliases
+alias pg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log $@"
+
+# MySQL aliases
+alias mysql="mysql.server $1"
 
