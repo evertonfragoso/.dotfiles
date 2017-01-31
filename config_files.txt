@@ -1,0 +1,3 @@
+.rspec
+.bash_profile
+.vimrc

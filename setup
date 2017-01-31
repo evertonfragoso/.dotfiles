@@ -1,11 +1,21 @@
 #!/bin/bash
 
-files=(.rspec .bash_profile .vimrc)
+# list of files to link
+filename='config_files.txt'
 
-for file in files do
-    echo "Creating \"$file\" link"
-    rm ~/$file
-    ln -s $file ~/$file
+count=0
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    files[$count]=$line
+    count=$count+1
+done < "$filename"
+
+# create links
+for file in ${files[*]}; do
+    echo "Creating link for $file"
+    # remove the existing link or file
+    rm -f ~/$file
+    # create new link
+    ln -s ${PWD}/$file ~/$file
 done
 
 # Reload the profile with the new options 
