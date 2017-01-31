@@ -9,19 +9,30 @@ None (_yet_)
 $ git clone https://github.com/evertonfragoso/.dotfiles.git
 ```
 
-- Run setup file:
+- Run setup file from the root folder:
 ```bash
 $ cd .dotfiles
 $ ./setup
 ```
 
-#### Troubleshooting
-In case the `setup` return error when called, check it's permissions, it must be executable. If it's not, run the following command:
+### Update
+Run the update file from the root folder:
 ```bash
-$ chmod +x ./setup
+$ cd .dotfiles
+$ ./update
 ```
-and try to run `setup` again
+
+#### Troubleshooting
+In case `setup` and/or `update` return error when called, check it's permissions, it must be executable. If it's not, run the following command:
+```bash
+$ chmod +x setup update
+```
+and try to run it again:
 ```bash
 $ ./setup
+```
+or
+```bash
+$ ./update
 ```
 
