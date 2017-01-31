@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo 'Retrieving the latest version...'
+git pull
+
+echo 'Updating files...'
+./setup
+
+echo 'All done!'
+

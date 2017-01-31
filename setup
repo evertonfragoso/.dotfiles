@@ -1,7 +1,12 @@
 #!/bin/bash
 
-cp .rspec ~/.rspec
-cp .bash_profile ~/.bash_profile
+files=(.rspec .bash_profile .vimrc)
+
+for file in files do
+    echo "Creating \"$file\" link"
+    rm ~/$file
+    ln -s $file ~/$file
+done
 
 # Reload the profile with the new options 
 shell_session_update() { :; }
