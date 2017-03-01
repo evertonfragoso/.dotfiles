@@ -1,5 +1,18 @@
 #!/bin/bash
 
+if command -v brew 2>/dev/null; then
+  echo "Updating Homebrew"
+  brew update
+else
+  if command -v ruby 2>/dev/null; then
+    echo "Installing Homebrew"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  else
+    echo "Ruby is required. Aborting."
+    exit 1
+  fi
+fi
+
 # list of files to link
 filename='config_files.txt'
 
