@@ -13,6 +13,15 @@ export LS_COLORS=Exfxcxdxbxegedabagacad
 alias l="ls -l -G $@"
 alias la="l -a $@"
 
+# git aliases
+alias g="git"
+alias ga="g add"
+alias gl="g pull"
+alias gp="g push"
+alias gs="g status"
+alias gc="g commit -m $1"
+alias gco="g checkout"
+
 # Bundler aliases
 alias b="bundle"
 alias be="b exec"
@@ -20,13 +29,13 @@ alias bi="b install"
 alias bu="b update"
 
 # Rails aliases
-alias ber="be rails"
-alias berake="be rake"
-alias mig="berake db:migrate"
+alias br="be rails"
+alias brake="be rake"
+alias mig="brake db:migrate"
 alias spec="be rspec $1"
 
 # PG aliases
-alias pg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log $@"
+alias pg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log $1"
 
 # MySQL aliases
 alias mysql="mysql.server $1"
