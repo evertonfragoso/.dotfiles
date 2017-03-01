@@ -3,20 +3,13 @@
 # list of files to link
 filename='config_files.txt'
 
-count=0
 while IFS='' read -r line || [[ -n "$line" ]]; do
-    files[$count]=$line
-    count=$count+1
-done < "$filename"
-
-# create links
-for file in ${files[*]}; do
-    echo "Creating link for $file"
+    echo "Creating link for $line"
     # remove the existing link or file
-    rm -f ~/$file
+    rm -f ~/$line
     # create new link
-    ln -s ${PWD}/$file ~/$file
-done
+    ln -s ${PWD}/$line ~/$line
+done < "$filename"
 
 # Reload the profile with the new options 
 shell_session_update() { :; }
