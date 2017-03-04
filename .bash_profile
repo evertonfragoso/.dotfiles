@@ -40,3 +40,5 @@ alias pg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.lo
 # MySQL aliases
 alias mysql="mysql.server $1"
 
+# flush DNS
+alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
