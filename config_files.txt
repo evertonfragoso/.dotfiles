@@ -1,3 +1,4 @@
-.rspec
 .bash_profile
+.gemrc
+.rspec
 .vimrc
