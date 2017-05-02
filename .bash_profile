@@ -13,6 +13,18 @@ export LS_COLORS=Exfxcxdxbxegedabagacad
 alias l="ls -l -G $@"
 alias la="l -a $@"
 
+# brew aliases
+cleanup() {
+    brew update
+    brew upgrade $(brew list)
+    brew cleanup
+
+    cache_folder=~/Library/Caches/Homebrew
+    for i in $(ls $cache_folder); do
+        rm "${cache_folder}/${i}"
+    done
+}
+
 # git aliases
 alias g="git"
 alias ga="g add"
@@ -42,3 +54,7 @@ alias mysql="mysql.server $1"
 
 # flush DNS
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+
+# thefuck
+eval "$(thefuck --alias)"
+

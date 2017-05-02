@@ -13,6 +13,14 @@ else
   fi
 fi
 
+pre_requesites=(git rbenv thefuck vim)
+
+for i in ${pre_requesites[@]}; do
+    if ! command -v ${i} 2>/dev/null; then
+        brew install ${i}
+    fi
+done
+
 # list of files to link
 filename='config_files.txt'
 
