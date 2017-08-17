@@ -1,0 +1,17 @@
+cmake
+ctags
+fzy
+git
+gmp
+mysql
+neovim
+perl
+postgresql
+python
+python3
+rbenv
+ruby
+ruby-build
+the_silver_searcher
+thefuck
+wget

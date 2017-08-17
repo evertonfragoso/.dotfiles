@@ -1,5 +1,11 @@
 #!/bin/bash
 
+SETUP_FOLDER=${PWD}
+
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'HOMEBREW'
+echo ''
+
 if command -v brew 2>/dev/null; then
   echo "Updating Homebrew"
   brew update
@@ -13,25 +19,95 @@ else
   fi
 fi
 
-pre_requesites=(git rbenv thefuck vim)
+echo ''
+echo '---'
+echo 'Installing required formulae'
+echo '---'
+echo ''
 
-for i in ${pre_requesites[@]}; do
-    if ! command -v ${i} 2>/dev/null; then
-        brew install ${i}
-    fi
-done
+brew_list='brew_list.txt'
+installed_formulae=$(brew list)
+while IFS='' read -r line || [[ -n "$line" ]]; do
+  if [[ installed_formulae == *"${line}"* ]]; then
+    echo "Installing ${line}"
+    brew install ${line}
+  else
+    echo -e "\033[0;46m[INFO]\033[0m ${line} already installed"
+  fi
+done < "$brew_list"
+
+echo ''
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'Installing required modules'
+echo ''
+
+echo 'Perl File::Next'
+cpan File::Next
+echo ''
+
+echo 'Python pip'
+if command -v pip3 2>/dev/null; then
+  echo 'Updating pip'
+  pip3 install -U pip
+else
+  echo 'pip not installed. Installing...'
+  curl https://bootstrap.pypa.io/get-pip.py
+  python3 get-pip.py
+  rm get-pip.py
+fi
+echo ''
+
+echo 'Python Neovim'
+pip3 install neovim --upgrade
+echo ''
+
+echo ''
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'Cloning Neovim modules'
+echo ''
+
+VIM_FOLDER="$SETUP_FOLDER/vim"
+bundle_folder="$VIM_FOLDER/bundle"
+
+# install vim-pathogen as plugin manager
+mkdir -p $VIM_FOLDER/autoload $bundle_folder && \
+curl -LSso $VIM_FOLDER/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+# list of plugins to install
+nvim_plugins="$VIM_FOLDER/plugins.txt"
+
+while IFS='' read -r line || [[ -n "$line" ]]; do
+  IFS='/' read -ra plugin_user_repo <<< "$line"
+  plugin_name="${plugin_user_repo[1]}"
+  if [ ! -d "$bundle_folder/$plugin_name" ]; then
+    echo "Cloning $line"
+    cd $bundle_folder && git clone https://github.com/$line
+  else
+    echo -e "\033[0;46m[INFO]\033[0m $plugin_name already exists. Updating..."
+    cd $bundle_folder/$plugin_name && git pull
+  fi
+done < "$nvim_plugins"
+cd $SETUP_FOLDER
+
+echo ''
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'Creating config files symlinks'
+echo ''
 
 # list of files to link
-filename='config_files.txt'
+config_files='config_files.txt'
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
     echo "Creating link for $line"
     # remove the existing link or file
     rm -f ~/$line
     # create new link
-    ln -s ${PWD}/$line ~/$line
-done < "$filename"
+    ln -s $SETUP_FOLDER/$line ~/$line
+done < "$config_files"
 
-# Reload the profile with the new options 
+# Reload the profile with the new options
 shell_session_update() { :; }
 
+echo ''
+echo 'All set. Restart your terminal.'
+echo ''
