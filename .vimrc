@@ -81,10 +81,6 @@ highlight SpellBad guifg=#ff0000 guibg=#ffff00
 " Leader is space
 let mapleader=" "
 
-" Tab navigation
-nnoremap <leader><Left> :tabp <cr>
-nnoremap <leader><Right> :tabn <cr>
-
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
@@ -94,6 +90,10 @@ noremap <leader>w :w <cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
+
+" Buffer navigation
+nnoremap <leader><Left> :bp <cr>
+nnoremap <leader><Right> :bn <cr>
 
 " List buffers and prompt for a number
 nnoremap <leader>b :buffers<CR>:buffer<Space>
