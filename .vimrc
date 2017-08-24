@@ -95,6 +95,9 @@ noremap <leader>w :w <cr>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
+" List buffers and prompt for a number
+nnoremap <leader>b :buffers<CR>:buffer<Space>
+
 " Replace hashrockets with 1.9 hash style syntax
 nmap <Leader>: :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc <cr>o
 
@@ -112,7 +115,7 @@ execute pathogen#infect()
 
 " Ale
 let g:ale_lint_on_save = 1
-"let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
 
 " Gutentags
 call pathogen#helptags()
