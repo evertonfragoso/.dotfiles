@@ -192,6 +192,18 @@ function! LightlineMode()
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
+" Surround with #{}
+function! s:InsertInterpolation()
+  let before = getline('.')[col('^'):col('.')]
+  let after  = getline('.')[col('.'):col('$')]
+  " check that we're in double-quotes string
+  if before =~# '"' && after =~# '"'
+      execute "normal! a{}\<Esc>h"
+  endif
+endfunction
+au FileType ruby,eruby,haml
+    \   inoremap <silent><buffer> # #<ESC>:call <SID>InsertInterpolation()<CR>a
+    \ | let b:surround_{char2nr('#')} = "#{\r}"
 
 " CtrlSF
 nmap <C-f> :CtrlSF 
