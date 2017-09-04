@@ -60,15 +60,10 @@ au BufNewFile,BufRead Gemfile set filetype=ruby
 au BufNewFile,BufRead Gemfile.lock set filetype=ruby
 
 " Enable folding
-set foldmethod=indent
-set foldlevel=99
-au FileType vim
-      \   setl foldmethod=marker
-      \ | setl foldenable
-      \ | setl foldlevel=0
-
-au FileType yaml
-      \ | set foldmethod=marker
+set foldmethod=syntax
+au FileType yaml,eruby,haml,html,scss,javascript set foldmethod=indent
+set foldlevelstart=99
+let g:vimsyn_folding='af'
 
 " Enable filetype specific indenting and plugins
 filetype indent plugin on
@@ -82,8 +77,8 @@ highlight SpellBad guifg=#ff0000 guibg=#ffff00
 let mapleader=" "
 
 " Easy splitting
-map <leader>s :split <cr>
-map <leader>v :vsplit <cr>
+"map <leader>s :split <cr>
+"map <leader>v :vsplit <cr>
 
 " Save file
 noremap <leader>w :w <cr>
@@ -99,7 +94,7 @@ nnoremap <leader><Right> :bn <cr>
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 " Replace hashrockets with 1.9 hash style syntax
-nmap <Leader>: :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc <cr>o
+nmap <leader>: :%s/:\([^ ]*\)\(\s*\)=>/\1:/gc <cr>o
 
 " Cancel a search with Escape:
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
@@ -109,6 +104,9 @@ nnoremap <leader>rv :source $MYVIMRC<CR>
 
 " Auto indent whole document
 nmap <leader>ai mzgg=G`z
+
+" Folding
+map <leader>- za
 
 " Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 execute pathogen#infect()
@@ -127,7 +125,7 @@ call pathogen#helptags()
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
-      \   'left':  [ [ 'mode', 'paste' ], 
+      \   'left':  [ [ 'mode', 'paste' ],
       \              [ 'gitbranch', 'filename', 'readonly' ] ],
       \   'right': [ [ 'lineinfo' ], ['percent'],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
