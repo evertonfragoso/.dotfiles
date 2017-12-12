@@ -16,7 +16,9 @@ alias l="ls -l -G $@"
 alias la="l -a $@"
 
 # Make directory and change into it.
-alias mcd='mkdir -p "$1" && cd "$1";'
+mcd() {
+  mkdir -p $1 && cd $1
+}
 
 # Homebrew
 cleanup() {
