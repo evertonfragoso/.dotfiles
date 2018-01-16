@@ -10,7 +10,6 @@ postgresql
 python
 python3
 rbenv
-ruby
 ruby-build
 the_silver_searcher
 thefuck
