@@ -80,6 +80,15 @@ let mapleader=" "
 "map <leader>s :split <cr>
 "map <leader>v :vsplit <cr>
 
+" New file
+nmap <C-n> :call NewFile(input('New file name: '))<cr>
+function! NewFile(filename)
+  if a:filename == ''
+    return
+  endif
+  exec 'e %:h/' . a:filename
+endfunction
+
 " Save file
 noremap <leader>w :w <cr>
 
