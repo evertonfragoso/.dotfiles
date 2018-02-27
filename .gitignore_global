@@ -1,0 +1,9 @@
+*~
+.DS_Store
+.idea
+.env.development
+log/*
+tmp/*
+tags
+tags.lock
+tags.temp

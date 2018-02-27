@@ -2,3 +2,4 @@
 .gemrc
 .rspec
 .vimrc
+.gitignore_global
