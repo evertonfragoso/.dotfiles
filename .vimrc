@@ -15,6 +15,21 @@ set nobackup nowritebackup noswapfile
 " show line numbers
 set number numberwidth=2
 
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<Tab>"
+    else
+        return "\<C-p>"
+    endif
+endfunction
+inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
+inoremap <S-Tab> <C-n><Paste>
+
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
@@ -48,6 +63,9 @@ set breakindentopt=sbr
 
 " Spelling
 set spellfile=$HOME/.vim/spell/en.utf-8.add spelllang=en
+
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
 
 " Set spelling, syntax highlighting for Markdown
 au BufRead,BufNewFile *.md setlocal spell filetype=markdown
