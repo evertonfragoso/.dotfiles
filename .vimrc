@@ -141,6 +141,11 @@ execute pathogen#infect()
 " Ale
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {'jsx': ['prettier', 'standard']}
+let g:ale_fixers = {'javascript': ['prettier', 'standard']}
+" StandardJS
+autocmd bufwritepost *.js silent !standard --fix %
+set autoread
 
 " Gutentags
 call pathogen#helptags()
