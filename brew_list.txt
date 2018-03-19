@@ -1,5 +1,4 @@
 cmake
-ctags
 fzy
 git
 gmp
@@ -13,4 +12,4 @@ rbenv
 ruby-build
 the_silver_searcher
 thefuck
-wget
+universal-ctags

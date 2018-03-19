@@ -24,6 +24,7 @@ echo
 echo '---'
 echo 'Installing required formulae'
 echo
+brew tap universal-ctags/universal-ctags # for universal-ctags - remove when is part of Homebrew repository
 ./brew_formulas.sh
 
 echo

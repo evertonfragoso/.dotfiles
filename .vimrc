@@ -254,6 +254,7 @@ autocmd FileType ctrlsf set nu
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
 
 " Emmet
+let g:user_emmet_install_global = 0
 autocmd FileType html,erb,jsx EmmetInstall
 
 " Fuzzy
