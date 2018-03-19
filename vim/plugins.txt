@@ -22,6 +22,8 @@ tpope/vim-fugitive
 airblade/vim-gitgutter
 ludovicchabant/vim-gutentags
 tpope/vim-haml
+pangloss/vim-javascript
+mxw/vim-jsx
 tiagofumo/vim-nerdtree-syntax-highlight
 sheerun/vim-polyglot
 tpope/vim-rails

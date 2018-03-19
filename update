@@ -1,10 +1,37 @@
 #!/bin/bash
 
-echo 'Retrieving the latest version...'
+# Add vars
+./setup_vars.sh
+
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'Retrieving the latest .dotfiles version...'
 git pull
 
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Updating files...'
-./setup
+echo
+echo 'Updating Homebrew'
+brew update
+
+echo
+echo '---'
+echo 'Updating formalaes'
+./brew_formulas.sh
+
+echo
+echo '---'
+echo 'Updating pip'
+pip3 install -U pip
+
+echo
+echo '---'
+echo 'Updating Neovim'
+pip3 install neovim --upgrade
+
+echo
+echo '---'
+echo 'Updating Vim plugins'
+./vim_plugins_setup.sh
 
 echo 'All done!'
 

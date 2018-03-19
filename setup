@@ -1,57 +1,45 @@
 #!/bin/bash
 
-# TODO: make it get the latest version instead of a fixed version
-RUBY_VERSION=2.4.3
-SETUP_FOLDER=${PWD}
+# Add vars
+./setup_vars.sh
 
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'HOMEBREW'
-echo ''
+echo
 
 if command -v brew 2>/dev/null; then
-  echo "Updating Homebrew"
+  echo 'Updating Homebrew'
   brew update
 else
   if command -v ruby 2>/dev/null; then
-    echo "Installing Homebrew"
+    echo 'Installing Homebrew'
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
-    echo "Ruby is required. Aborting."
+    echo 'Ruby is required. Aborting.'
     exit 1
   fi
 fi
 
-echo ''
+echo
 echo '---'
 echo 'Installing required formulae'
-echo '---'
-echo ''
+echo
+./brew_formulas.sh
 
-brew_list='brew_list.txt'
-installed_formulae=$(brew list)
-while IFS='' read -r line || [[ -n "$line" ]]; do
-  if [[ installed_formulae == *"${line}"* ]]; then
-    echo "Installing ${line}"
-    brew install ${line}
-  else
-    echo -e "\033[0;46m[INFO]\033[0m ${line} already installed"
-  fi
-done < "$brew_list"
-
-echo ''
+echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Installing Ruby'
-echo ''
+echo
 echo 'N' | rbenv install $RUBY_VERSION
 
-echo ''
+echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Installing required modules'
-echo ''
+echo
 
 echo 'Perl File::Next'
 cpan File::Next
-echo ''
+echo
 
 echo 'Python pip'
 if command -v pip3 2>/dev/null; then
@@ -63,44 +51,28 @@ else
   python3 get-pip.py
   rm get-pip.py
 fi
-echo ''
+echo
 
 echo 'Python Neovim'
 pip3 install neovim --upgrade
-echo ''
+echo
 
-echo ''
+echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Cloning Neovim modules'
-echo ''
-
-VIM_FOLDER="$SETUP_FOLDER/vim"
-bundle_folder="$VIM_FOLDER/bundle"
+echo
 
 # install vim-pathogen as plugin manager
 mkdir -p $VIM_FOLDER/autoload $bundle_folder && \
 curl -LSso $VIM_FOLDER/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-# list of plugins to install
-nvim_plugins="$VIM_FOLDER/plugins.txt"
-
-while IFS='' read -r line || [[ -n "$line" ]]; do
-  IFS='/' read -ra plugin_user_repo <<< "$line"
-  plugin_name="${plugin_user_repo[1]}"
-  if [ ! -d "$bundle_folder/$plugin_name" ]; then
-    echo "Cloning $line"
-    cd $bundle_folder && git clone https://github.com/$line
-  else
-    echo -e "\033[0;46m[INFO]\033[0m $plugin_name already exists. Updating..."
-    cd $bundle_folder/$plugin_name && git pull
-  fi
-done < "$nvim_plugins"
+./vim_plugins_setup.sh
 cd $SETUP_FOLDER
 
-echo ''
+echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Creating config files symlinks'
-echo ''
+echo
 
 # list of files to link
 config_files='config_files.txt'
@@ -116,6 +88,6 @@ done < "$config_files"
 # Reload the profile with the new options
 shell_session_update() { :; }
 
-echo ''
+echo
 echo 'All set. Restart your terminal.'
-echo ''
+echo

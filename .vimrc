@@ -139,11 +139,14 @@ map <leader>- za
 execute pathogen#infect()
 
 " Ale
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {'jsx': ['prettier', 'standard']}
 let g:ale_fixers = {'javascript': ['prettier', 'standard']}
-" StandardJS
+" StandardJS on save
 autocmd bufwritepost *.js silent !standard --fix %
 set autoread
 
