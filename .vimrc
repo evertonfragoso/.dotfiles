@@ -20,12 +20,12 @@ set number numberwidth=2
 " will use completion if not at beginning
 set wildmode=list:longest,list:full
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<Tab>"
-    else
-        return "\<C-p>"
-    endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<Tab>"
+  else
+    return "\<C-p>"
+  endif
 endfunction
 inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n><Paste>
@@ -175,7 +175,7 @@ let g:lightline = {
       \ },
       \ 'component_type': { 'paste': 'warning' },
       \ 'subseparator': { 'left': '|', 'right': '|' }
-   \ }
+      \ }
 
 function! LightlineModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -233,12 +233,12 @@ function! s:InsertInterpolation()
   let after  = getline('.')[col('.'):col('$')]
   " check that we're in double-quotes string
   if before =~# '"' && after =~# '"'
-      execute "normal! a{}\<Esc>h"
+    execute "normal! a{}\<Esc>h"
   endif
 endfunction
 au FileType ruby,eruby,haml
-    \   inoremap <silent><buffer> # #<ESC>:call <SID>InsertInterpolation()<CR>a
-    \ | let b:surround_{char2nr('#')} = "#{\r}"
+      \   inoremap <silent><buffer> # #<ESC>:call <SID>InsertInterpolation()<CR>a
+      \ | let b:surround_{char2nr('#')} = "#{\r}"
 
 " CtrlSF
 nmap <C-f> :CtrlSF 
@@ -293,4 +293,3 @@ let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
-

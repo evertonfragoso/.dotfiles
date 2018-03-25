@@ -8,6 +8,7 @@ mattn/emmet-vim
 Yggdroot/indentLine
 itchyny/lightline.vim
 cloudhead/neovim-fuzzy
+scrooloose/nerdcommenter
 scrooloose/nerdtree
 Xuyuanp/nerdtree-git-plugin
 ervandew/supertab
