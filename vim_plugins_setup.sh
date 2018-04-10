@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add vars
-./setup_vars.sh
+. ./setup_vars.sh
 
 # list of plugins to install
 nvim_plugins="$VIM_FOLDER/plugins.txt"

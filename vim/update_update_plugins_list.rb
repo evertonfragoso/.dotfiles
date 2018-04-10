@@ -17,5 +17,7 @@ end
 PLUGINS_LIST.sort_by! { |o| o.split('/').last }
 
 File.open(PLUGINS_LIST_FILE, 'w+') do |f|
-  f.write PLUGINS_LIST.each { |x| x.strip! }.join("\n")
+  list = PLUGINS_LIST.each { |x| x.strip! }.join("\n")
+  f.write list
+  puts list
 end

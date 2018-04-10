@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add vars
-./setup_vars.sh
+. ./setup_vars.sh
 
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Retrieving the latest .dotfiles version...'
@@ -16,7 +16,7 @@ brew update
 echo
 echo '---'
 echo 'Updating formalaes'
-./brew_formulas.sh
+. ./brew_formulas.sh
 
 echo
 echo '---'
@@ -31,7 +31,7 @@ pip3 install neovim --upgrade
 echo
 echo '---'
 echo 'Updating Vim plugins'
-./vim_plugins_setup.sh
+. ./vim_plugins_setup.sh
 
 echo 'All done!'
 
