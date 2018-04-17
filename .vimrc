@@ -95,8 +95,8 @@ highlight SpellBad guifg=#ff0000 guibg=#ffff00
 let mapleader=" "
 
 " Easy splitting
-"map <leader>s :split <cr>
-"map <leader>v :vsplit <cr>
+map <leader>s :split <cr>
+map <leader>v :vsplit <cr>
 
 " New file
 nmap <C-n> :call NewFile(input('New file name: '))<cr>
