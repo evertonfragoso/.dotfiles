@@ -97,6 +97,10 @@ let mapleader=" "
 " Easy splitting
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
+map <leader>h <C-w>h
+map <leader>j <C-w>j
+map <leader>k <C-w>k
+map <leader>l <C-w>l
 
 " New file
 nmap <C-n> :call NewFile(input('New file name: '))<cr>

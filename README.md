@@ -1,5 +1,7 @@
 ## My .dotfiles
 
+Cheat Sheet available [here](https://docs.google.com/spreadsheets/d/1YkAicQOxZIIaJMARulF5cq6plb6v0CW_WVXrDfqr3D8/edit#gid=464928758)
+
 ### Requirements
 None (_yet_)
 
