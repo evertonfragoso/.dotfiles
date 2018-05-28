@@ -95,6 +95,8 @@ highlight SpellBad guifg=#ff0000 guibg=#ffff00
 let mapleader=" "
 
 " Easy splitting
+set splitbelow
+set splitright
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
 map <leader>h <C-w>h
