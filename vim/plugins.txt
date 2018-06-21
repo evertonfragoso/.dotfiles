@@ -1,6 +1,7 @@
 w0rp/ale
 jiangmiao/auto-pairs
 chriskempson/base16-vim
+ruanyl/coverage.vim
 dyng/ctrlsf.vim
 fishbullet/deoplete-ruby
 Shougo/deoplete.nvim
@@ -8,13 +9,13 @@ mattn/emmet-vim
 Yggdroot/indentLine
 itchyny/lightline.vim
 cloudhead/neovim-fuzzy
-scrooloose/nerdcommenter
 scrooloose/nerdtree
 Xuyuanp/nerdtree-git-plugin
 ervandew/supertab
 SirVer/ultisnips
 tpope/vim-bundler
 alvan/vim-closetag
+tpope/vim-commentary
 tpope/vim-dispatch
 junegunn/vim-easy-align
 epilande/vim-es2015-snippets
