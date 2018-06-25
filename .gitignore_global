@@ -2,8 +2,10 @@
 .DS_Store
 .idea
 .env.development
+*.log
 log/*
 tmp/*
-tags
-tags.lock
-tags.temp
+tags*
+
+# PNPM
+shrinkwrap.yaml

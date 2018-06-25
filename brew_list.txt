@@ -4,6 +4,7 @@ git
 gmp
 mysql
 neovim
+node
 perl
 postgresql
 python

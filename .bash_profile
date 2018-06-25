@@ -61,16 +61,21 @@ clone() {
 }
 
 # Bundler aliases
-alias b="bundle"
-alias be="b exec"
-alias bi="b install"
-alias bu="b update"
+alias b='bundle'
+alias be='b exec'
+alias bi='b install'
+alias bu='b update'
 
 # Rails aliases
-alias br="be rails"
-alias brake="be rake"
-alias mig="brake db:migrate"
-alias spec="be rspec"
+alias br='be rails'
+alias brake='be rake'
+alias mig='brake db:migrate'
+alias spec='be rspec'
+
+# node aliases
+alias n='node'
+# Use pnpm as default package manager
+alias np='pnpm'
 
 # Tmux aliases
 #alias tmux='tmux -2'

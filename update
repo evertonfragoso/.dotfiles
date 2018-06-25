@@ -30,6 +30,12 @@ pip3 install neovim --upgrade
 
 echo
 echo '---'
+echo 'Updating node packages'
+sudo npm install -g npm
+npm update -g
+
+echo
+echo '---'
 echo 'Updating Vim plugins'
 . ./vim_plugins_setup.sh
 
