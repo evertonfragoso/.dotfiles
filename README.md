@@ -2,6 +2,12 @@
 
 Cheat Sheet available [here](https://docs.google.com/spreadsheets/d/1YkAicQOxZIIaJMARulF5cq6plb6v0CW_WVXrDfqr3D8/edit#gid=464928758)
 
+### Table of Contents:
+- [Requirements](#requirements)
+- [Install](#install)
+- [Update](#update)
+- [Troubleshooting](#troubleshooting)
+
 ### Requirements
 - MacOS with Ruby 2.0+
 
@@ -24,17 +30,13 @@ $ cd .dotfiles
 $ ./update
 ```
 
-#### Troubleshooting
-> In case `setup` and/or `update` returns an error when called, check it's permissions because it must be executable. If it's not executable, run the following command:
->
-> ```bash
-> $ chmod +x setup update
-> ```
->
-> and try to run it again:
->
-> ```bash
-> $ ./setup
-> ```
+### Troubleshooting
+* In case `setup` and/or `update` returns an error when called, check it's permissions because it must be executable. If it's not executable, run the following command:
 
-> Inside `vim`, if you get a `deoplete` error asking to run `:UpdateRemotePlugins`, you likely have updated the `UtilSnips` plugin and it requires a newer version of `python3`. Just run the `update` script in terminal and then `:UpdateRemotePlugins` on `vim`
+    ```bash
+    $ chmod +x setup update
+    ```
+
+    and try to run the `setup` again.
+
+* Inside `vim`, if you get a `deoplete` error asking to run `:UpdateRemotePlugins`, you likely have updated the `UtilSnips` plugin and it requires a newer version of `python3`. Just run the `update` script in terminal and then `:UpdateRemotePlugins` on `vim`
