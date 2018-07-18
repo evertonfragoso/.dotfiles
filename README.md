@@ -25,19 +25,16 @@ $ ./update
 ```
 
 #### Troubleshooting
-In case `setup` and/or `update` returns an error when called, check it's permissions because it must be executable. If it's not executable, run the following command:
+> In case `setup` and/or `update` returns an error when called, check it's permissions because it must be executable. If it's not executable, run the following command:
+>
+> ```bash
+> $ chmod +x setup update
+> ```
+>
+> and try to run it again:
+>
+> ```bash
+> $ ./setup
+> ```
 
-```bash
-$ chmod +x setup update
-```
-
-and try to run it again:
-
-```bash
-$ ./setup
-```
-or
-```bash
-$ ./update
-```
-
+> Inside `vim`, if you get a `deoplete` error asking to run `:UpdateRemotePlugins`, you likely have updated the `UtilSnips` plugin and it requires a newer version of `python3`. Just run the `update` script in terminal and then `:UpdateRemotePlugins` on `vim`
