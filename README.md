@@ -76,8 +76,9 @@ $ ./update
 - `n`: `node`
 - `np`: `pnpm`<sup name="a-npm">[2](#f-npm)</sup>
 
-<b name="f-editor">1</b>: Default editor is set to `nvim` [↩](#a-editor)
-<b name="f-npm">2</b>: Defaults to `pnpm` package manager [↩](#a-npm)
+<span name="f-editor">1</span>: Default editor is set to `nvim` [`↩`](#a-editor)
+
+<span name="f-npm">2</span>: Defaults to `pnpm` package manager [`↩`](#a-npm)
 
 ### Troubleshooting
 * In case `setup` and/or `update` returns an error when called, check it's permissions because it must be executable. If it's not executable, run the following command:
