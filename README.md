@@ -39,7 +39,7 @@ $ ./update
 
 ### Aliases And Custom Commands
 #### Bash
-- `v`, `vi`, `vim`: default editor<sup id="a-editor">[1](#f-editor)</sup>
+- `v`, `vi`, `vim`: default editor (Default editor is set to `nvim`)
 - `fuck`: corrects errors in previous console command
 - `mcd`: create a folder and navigates into it
 - `l`: colorized list in long format
@@ -74,11 +74,7 @@ $ ./update
 
 #### NodeJS
 - `n`: `node`
-- `np`: `pnpm`<sup id="a-npm">[2](#f-npm)</sup>
-
-<b id="f-editor">1</b>: Default editor is set to `nvim` [`↩`](#a-editor)
-
-<b id="f-npm">2</b>: Defaults to `pnpm` package manager [`↩`](#a-npm)
+- `np`: `pnpm` (Use `pnpm` package manager instead of `npm`)
 
 ### Troubleshooting
 * In case `setup` and/or `update` returns an error when called, check it's permissions because it must be executable. If it's not executable, run the following command:
