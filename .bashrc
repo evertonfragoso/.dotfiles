@@ -1,6 +1,9 @@
 #!/bin/bash
 source ~/.profile
 
+# Format Bash prompt
+source ~/.git-prompt
+
 # Vim is default editor
 export EDITOR="nvim"
 # Report terminal type

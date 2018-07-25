@@ -2,5 +2,6 @@
 .bash_profile
 .gemrc
 .gitignore_global
+.git-prompt
 .rspec
 .vimrc
