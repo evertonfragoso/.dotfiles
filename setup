@@ -24,7 +24,6 @@ echo
 echo '---'
 echo 'Installing required formulae'
 echo
-brew tap universal-ctags/universal-ctags # for universal-ctags - remove when is part of Homebrew repository
 . ./brew_formulas.sh
 
 echo
@@ -74,7 +73,7 @@ echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Install node modules'
 echo
-npm install -g pnpm prettier standard webpack webpack-cli yarn
+. ./node_packages.sh
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'

@@ -104,4 +104,3 @@ alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 # thefuck
 eval "$(thefuck --alias)"
-

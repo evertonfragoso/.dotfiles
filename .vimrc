@@ -22,9 +22,9 @@ set wildmode=list:longest,list:full
 function! InsertTabWrapper()
   let col = col('.') - 1
   if !col || getline('.')[col - 1] !~ '\k'
-    return "\<Tab>"
+    return '\<Tab>'
   else
-    return "\<C-p>"
+    return '\<C-p>'
   endif
 endfunction
 inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
@@ -73,7 +73,7 @@ au BufRead,BufNewFile *.md setlocal spell filetype=markdown
 " Automatically wrap at 72 characters and spell check git commit messages
 "au FileType gitcommit setlocal textwidth=72 spell
 
-"Syntax highlighting for special files
+" Syntax highlighting for special files
 au BufNewFile,BufRead Gemfile set filetype=ruby
 au BufNewFile,BufRead Gemfile.lock set filetype=ruby
 
@@ -92,7 +92,7 @@ highlight SpellBad guifg=#ff0000 guibg=#ffff00
 
 " Custom key mapings ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Leader is space
-let mapleader=" "
+let mapleader=' '
 
 " Easy splitting
 set splitbelow
@@ -193,19 +193,19 @@ endfunction
 
 function! LightlineFilename()
   let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? '' :
+  return fname =~ 'Netrw' ? '' :
         \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
         \ ('' != fname ? fname : '[No Name]') .
         \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
 endfunction
 
 function! LightlinePaste()
-  return '%{&paste?"PASTE":""}'
+  return '%{&paste?"PASTE":''}'
 endfunction
 
 function! LightlineFugitive()
   try
-    if expand('%:t') !~? 'NERD' && exists('*fugitive#head')
+    if expand('%:t') !~? 'Netrw' && exists('*fugitive#head')
       let mark = ''  " edit here for cool mark
       let branch = fugitive#head()
       return branch !=# '' ? mark.branch : ''
@@ -229,7 +229,7 @@ endfunction
 
 function! LightlineMode()
   let fname = expand('%:t')
-  return fname =~ 'NERD_tree' ? 'NERDTree' :
+  return fname =~ 'Netrw' ? 'Netrw' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
@@ -239,12 +239,12 @@ function! s:InsertInterpolation()
   let after  = getline('.')[col('.'):col('$')]
   " check that we're in double-quotes string
   if before =~# '"' && after =~# '"'
-    execute "normal! a{}\<Esc>h"
+    execute 'normal! a{}\<Esc>h'
   endif
 endfunction
 au FileType ruby,eruby,haml
       \   inoremap <silent><buffer> # #<ESC>:call <SID>InsertInterpolation()<CR>a
-      \ | let b:surround_{char2nr('#')} = "#{\r}"
+      \ | let b:surround_{char2nr('#')} = '#{\r}'
 
 " CtrlSF
 nmap <C-f> :CtrlSF 
@@ -257,7 +257,7 @@ let g:ctrlsf_indent = 2
 autocmd FileType ctrlsf set nu
 
 " Closetag
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
 
 " Emmet
 let g:user_emmet_install_global = 0
@@ -277,28 +277,27 @@ nnoremap <leader>q :Sayonara<cr>
 let g:deoplete#enable_at_startup = 1
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" Nerdtree
-map <leader>1 :NERDTreeToggle<CR>
-map <leader>! :NERDTreeFind<CR>
-autocmd bufenter * if (winnr("$") == 1 &&
-      \ exists("b:NERDTree") &&
-      \ b:NERDTree.isTabTree()) | q | endif
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " Interface ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let base16colorspace=256
 
-" Nerdtree
-" Don't show help, press ? to get it
-let g:NERDTreeMinimalUI = 1
-" Delete buffer after file rename, delete
-let g:NERDTreeAutoDeleteBuffer=1
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
+" netrw
+map <leader>1 :Lexplore <cr>
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = -28
+let g:netrw_sort_sequence = '[\/]$,*'
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
+" hide dot files - gh to toggle
+" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 " coverage.vim
 let g:coverage_json_report_path = 'coverage/coverage-final.json'
