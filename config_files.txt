@@ -3,5 +3,6 @@
 .gemrc
 .gitignore_global
 .git-prompt
+.profile
 .rspec
 .vimrc
