@@ -39,5 +39,10 @@ echo '---'
 echo 'Updating Vim plugins'
 . ./vim_plugins_setup.sh
 
+echo
+echo '---'
+echo 'Update z'
+cd ~/z && git pull
+
 echo 'All done!'
 

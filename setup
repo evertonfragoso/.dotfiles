@@ -83,6 +83,12 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'Cloning z'
+cd && git clone https://github.com/rupa/z.git
+echo
+
+echo
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Creating config files symlinks'
 echo
 

@@ -18,6 +18,9 @@ export LS_COLORS=Exfxcxdxbxegedabagacad
 alias l="ls -l -G $@"
 alias la="l -a $@"
 
+# z navigator
+. $HOME/z/z.sh
+
 # Make directory and change into it.
 mcd() {
   mkdir -p $1 && cd $1
@@ -41,8 +44,11 @@ alias ga="g add"
 alias pull="g pull"
 alias push="g push"
 alias gs="g status"
-alias commit="g commit -m"
 alias gco="g checkout"
+commit() {
+  message=$1
+  git commit -m "$(echo -e "$message")"
+}
 clone() {
   if [ -n $1 ] ; then
     if [[ $1 =~ ^https?|git@ ]]; then
