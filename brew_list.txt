@@ -1,7 +1,11 @@
+bat
 cmake
+diff-so-fancy
 fzy
 git
 gmp
+htop
+jq
 mysql
 neovim
 node

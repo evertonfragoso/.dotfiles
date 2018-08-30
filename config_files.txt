@@ -1,6 +1,7 @@
 .bashrc
 .bash_profile
 .gemrc
+.gitconfig
 .gitignore_global
 .git-prompt
 .profile
