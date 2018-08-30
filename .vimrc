@@ -68,14 +68,14 @@ set spellfile=$HOME/.vim/spell/en.utf-8.add spelllang=en
 set complete+=kspell
 
 " Set spelling, syntax highlighting for Markdown
-au BufRead,BufNewFile *.md setlocal spell filetype=markdown
+au BufRead,BufNewFile {*.md,*.mkd,*.markdown} setlocal spell ft=markdown
 
 " Automatically wrap at 72 characters and spell check git commit messages
-"au FileType gitcommit setlocal textwidth=72 spell
+au FileType gitcommit setlocal textwidth=72 spell
 
-" Syntax highlighting for special files
-au BufNewFile,BufRead Gemfile set filetype=ruby
-au BufNewFile,BufRead Gemfile.lock set filetype=ruby
+" Syntax highlighting for special ruby files
+au BufNewFile,BufRead {*.rake,*.ruby,config.ru} set ft=ruby
+au BufNewFile,BufRead {Gemfile,Rakefile,Capfile,Guardfile} set ft=ruby
 
 " Enable folding
 set foldmethod=syntax
