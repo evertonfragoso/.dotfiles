@@ -3,8 +3,6 @@ jiangmiao/auto-pairs
 chriskempson/base16-vim
 ruanyl/coverage.vim
 dyng/ctrlsf.vim
-fishbullet/deoplete-ruby
-Shougo/deoplete.nvim
 mattn/emmet-vim
 Yggdroot/indentLine
 itchyny/lightline.vim
