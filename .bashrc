@@ -9,6 +9,9 @@ export EDITOR="nvim"
 # Report terminal type
 #export TERM=xterm-256color
 
+# Bat color for light background terminal
+export BAT_THEME=GitHub
+
 alias v=$EDITOR
 alias vi=$EDITOR
 alias vim=$EDITOR
@@ -67,6 +70,11 @@ clone() {
     echo '  - clone UserName/Repo';
     echo '    Attention: this format uses github to clone'
   fi
+}
+
+# Travis (and some more in the future)
+travis() {
+  open "https://travis-ci.com/$(git remote get-url origin | grep -oE "[^\/:]\w+/[^\.]+")"
 }
 
 # Bundler aliases

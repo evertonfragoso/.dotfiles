@@ -44,9 +44,9 @@ set nojoinspaces
 let g:html_indent_tags = 'li\|p'
 
 " highlight the current line
-set cursorline
-hi CursorLine cterm=NONE ctermbg=grey ctermfg=white guibg=grey guifg=white
-hi CursorColumn cterm=NONE ctermbg=grey ctermfg=white guibg=grey guifg=white
+" set cursorline
+" hi CursorLine cterm=NONE ctermbg=grey ctermfg=white guibg=grey guifg=white
+" hi CursorColumn cterm=NONE ctermbg=grey ctermfg=white guibg=grey guifg=white
 
 " Make escape work in the Neovim terminal.
 tnoremap <Esc> <C-\><C-n>
@@ -239,7 +239,7 @@ function! s:InsertInterpolation()
   let after  = getline('.')[col('.'):col('$')]
   " check that we're in double-quotes string
   if before =~# '"' && after =~# '"'
-    execute 'normal! a{}\<Esc>h'
+    execute "normal! a{}\<Esc>h"
   endif
 endfunction
 au FileType ruby,eruby,haml
@@ -274,7 +274,7 @@ let g:rubycomplete_rails = 1
 nnoremap <leader>q :Sayonara<cr>
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
