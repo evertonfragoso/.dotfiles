@@ -21,10 +21,10 @@ set number numberwidth=2
 set wildmode=list:longest,list:full
 function! InsertTabWrapper()
   let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return '\<Tab>'
+  if !col || getline('.')[col - 1] !~ "\k"
+    return "\<Tab>"
   else
-    return '\<C-p>'
+    return "\<C-p>"
   endif
 endfunction
 inoremap <Tab> <C-r>=InsertTabWrapper()<CR>

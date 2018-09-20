@@ -6,7 +6,7 @@ source ~/.git-prompt.sh
 MAGENTA='\[\033[0;35m\]'
 YELLOW='\[\033[01;32m\]'
 BLUE='\[\033[00;34m\]'
-LIGHT_GRAY='\[\033[0;37m\]'
+GRAY='\[\033[0;89m\]'
 CYAN='\[\033[0;36m\]'
 DEFAULT='\[\033[00m\]'
 RED='\[\033[0;31m\]'
@@ -27,7 +27,7 @@ function color_my_prompt {
   elif [[ "$(__git_ps1)" =~ '$' ]]; then # if there is something stashed
     __git_branch_color="$YELLOW"
   elif [[ "$(__git_ps1)" =~ '%' ]]; then # if there are only untracked files
-    __git_branch_color="$LIGHT_GRAY"
+    __git_branch_color="$GRAY"
   elif [[ "$(__git_ps1)" =~ '+' ]]; then # if there are staged files
     __git_branch_color="$CYAN"
   fi

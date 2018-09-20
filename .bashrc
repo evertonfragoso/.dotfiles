@@ -18,8 +18,8 @@ alias vim=$EDITOR
 
 # bash ls aliases
 export LS_COLORS=Exfxcxdxbxegedabagacad
-alias l="ls -l -G $@"
-alias la="l -a $@"
+alias l="ls -lG $@"
+alias la="l -A $@"
 
 # z navigator
 . $HOME/z/z.sh
@@ -46,6 +46,7 @@ alias g="git"
 alias ga="g add"
 alias pull="g pull"
 alias push="g push"
+alias push1="push -u origin HEAD"
 alias gs="g status"
 alias gco="g checkout"
 commit() {
