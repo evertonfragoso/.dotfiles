@@ -95,6 +95,39 @@ alias n='node'
 # Use pnpm as default package manager
 alias np='pnpm'
 
+# docker containers
+dckr() {
+  if [ -z $1 ]; then
+    echo "What command? (e.g. 'console' for rails console, 'psql' for psql, etc)"
+    return
+  fi
+
+  containers=$(docker ps --format "{{.Names}}" | tr "\n" ",")
+  IFS=',' read -r -a containers_list <<< "$containers"
+  echo "Containers:"
+  for index in "${!containers_list[@]}"; do
+    echo -e "  [$index] ${containers_list[index]}"
+  done
+  echo -n "Enter the container number and press [ENTER]: "
+  read choice
+  if [ $choice -gt ${#containers_list[@]} ]; then
+    echo 'Invalid option'
+    return
+  fi
+
+  case $1 in
+    'console')
+      docker exec -it ${containers_list[choice]} bundle exec rails console
+      ;;
+    'psql')
+      docker exec -it ${containers_list[choice]} psql -U postgres
+      ;;
+    *)
+      docker exec -it ${containers_list[choice]} $*
+      ;;
+  esac
+}
+
 # Tmux aliases
 #alias tmux='tmux -2'
 #alias ta='tmux attach -t'
