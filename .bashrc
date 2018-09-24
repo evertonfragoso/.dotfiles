@@ -103,23 +103,29 @@ dckr() {
   fi
 
   containers=$(docker ps --format "{{.Names}}" | tr "\n" ",")
-  IFS=',' read -r -a containers_list <<< "$containers"
+  choice=''
+
+  IFS="," read -r -a containers_list <<< "$containers"
   echo "Containers:"
   for index in "${!containers_list[@]}"; do
     echo -e "  [$index] ${containers_list[index]}"
   done
-  echo -n "Enter the container number and press [ENTER]: "
-  read choice
+
+  while [ -z $choice ]; do
+    echo -n "Enter the container number and press [ENTER]: "
+    read choice
+  done
+
   if [ $choice -gt ${#containers_list[@]} ]; then
-    echo 'Invalid option'
+    echo "Invalid option"
     return
   fi
 
   case $1 in
-    'console')
+    "console")
       docker exec -it ${containers_list[choice]} bundle exec rails console
       ;;
-    'psql')
+    "psql")
       docker exec -it ${containers_list[choice]} psql -U postgres
       ;;
     *)
