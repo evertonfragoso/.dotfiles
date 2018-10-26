@@ -42,7 +42,6 @@ echo 'Updating Vim plugins'
 echo
 echo '---'
 echo 'Update z'
-cd ~/z && git pull
+. ./z_install.sh
 
 echo 'All done!'
-
