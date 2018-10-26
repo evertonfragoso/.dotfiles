@@ -1,5 +1,4 @@
 #!/bin/bash
-source ~/.profile
 
 # Format Bash prompt
 source ~/.git-prompt
