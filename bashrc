@@ -1,5 +1,4 @@
 #!/bin/bash
-source ~/.profile
 
 # Format Bash prompt
 source ~/.git-prompt
@@ -31,14 +30,14 @@ mcd() {
 
 # Homebrew
 cleanup() {
-    brew update
-    brew upgrade $(brew list)
-    brew cleanup
+  brew update
+  brew upgrade $(brew list)
+  brew cleanup
 
-    cache_folder=~/Library/Caches/Homebrew
-    for i in $(ls $cache_folder); do
-        rm "${cache_folder}/${i}"
-    done
+  cache_folder=~/Library/Caches/Homebrew
+  for i in $(ls $cache_folder); do
+    rm "${cache_folder}/${i}"
+  done
 }
 
 # git aliases

@@ -24,7 +24,7 @@ echo
 echo '---'
 echo 'Installing required formulae'
 echo
-. ./brew_formulas.sh
+. "${SETUP_FOLDER}/brew_formulas.sh"
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
@@ -66,14 +66,14 @@ echo
 mkdir -p $VIM_FOLDER/autoload $bundle_folder && \
 curl -LSso $VIM_FOLDER/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-. ./vim_plugins_setup.sh
+. "${SETUP_FOLDER}/vim_plugins_setup.sh"
 cd $SETUP_FOLDER
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Install node modules'
 echo
-. ./node_packages.sh
+. "${SETUP_FOLDER}/node_packages.sh"
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
@@ -84,7 +84,7 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Cloning z'
-cd && git clone https://github.com/rupa/z.git
+. "${SETUP_FOLDER}/z_install.sh"
 echo
 
 echo
@@ -96,11 +96,12 @@ echo
 config_files='config_files.txt'
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
-    echo "Creating link for $line"
-    # remove the existing link or file
-    rm -f ~/$line
-    # create new link
-    ln -s $SETUP_FOLDER/$line ~/$line
+  filename=".${line}"
+  echo "Creating link for $filename"
+  # remove the existing link or file
+  rm -f ~/$filename
+  # create new link
+  ln -s $SETUP_FOLDER/$line ~/$filename
 done < "$config_files"
 
 # Reload the profile with the new options

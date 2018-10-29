@@ -16,7 +16,7 @@ brew update
 echo
 echo '---'
 echo 'Updating formalaes'
-. ./brew_formulas.sh
+. "${SETUP_FOLDER}/brew_formulas.sh"
 
 echo
 echo '---'
@@ -37,12 +37,11 @@ npm update -g
 echo
 echo '---'
 echo 'Updating Vim plugins'
-. ./vim_plugins_setup.sh
+. "${SETUP_FOLDER}/vim_plugins_setup.sh"
 
 echo
 echo '---'
 echo 'Update z'
-cd ~/z && git pull
+. "${SETUP_FOLDER}/z_install.sh"
 
 echo 'All done!'
-
