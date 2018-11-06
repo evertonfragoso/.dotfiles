@@ -8,6 +8,7 @@
 log/*
 tmp/*
 tags*
+spec/examples.txt
 
 # PNPM
 shrinkwrap.yaml

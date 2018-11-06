@@ -4,6 +4,8 @@ gemrc
 gitconfig
 gitignore_global
 git-prompt
+git_template
 profile
 rspec
+vim
 vimrc

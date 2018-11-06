@@ -3,45 +3,123 @@
 # Add vars
 . ./setup_vars.sh
 
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo 'Retrieving the latest .dotfiles version...'
-git pull
+SCRIPT_NAME=$0
 
-echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo 'Updating files...'
-echo
-echo 'Updating Homebrew'
-brew update
+usage() {
+  cat << EOF >&2
+Usage:
+  -b,  --brew:      Update Homebrew and installed formulaes
+  -c,  --config:    (Re)Create config files symlinks
+  -d,  --dotfiles:  Pull the latest commits from this dotfiles
+  -no, --node:      Update NodeJS (Warning: this will upgrade to major versions)
+  -nv, --nvim:      Update NeoVim (via python pip) and it's installed plugins
+  -p,  --pip:       Update python pip
+  -z:               Update z script
 
-echo
-echo '---'
-echo 'Updating formalaes'
-. "${SETUP_FOLDER}/brew_formulas.sh"
+  -a,  --all:       Update everything
 
-echo
-echo '---'
-echo 'Updating pip'
-pip3 install -U pip
+  -h,  --help:      This help message
+EOF
+  exit 1
+}
 
-echo
-echo '---'
-echo 'Updating Neovim'
-pip3 install neovim --upgrade
+log() {
+  echo ""
+  echo $1
+  echo -e "$1" >> update.log
+}
 
-echo
-echo '---'
-echo 'Updating node packages'
-sudo npm install -g npm pnpm
-npm update -g
+u_dotfiles() {
+  log "- Retrieving the latest .dotfiles version..."
+  git pull >> update.log
+}
 
-echo
-echo '---'
-echo 'Updating Vim plugins'
-. "${SETUP_FOLDER}/vim_plugins_setup.sh"
+u_brew() {
+  log "- Updating Homebrew"
+  brew update >> update.log
+}
 
-echo
-echo '---'
-echo 'Update z'
-. "${SETUP_FOLDER}/z_install.sh"
+u_brew_formulaes() {
+  log "- Updating formalaes"
+  . "${SETUP_FOLDER}/brew_formulas.sh" >> update.log
+}
 
-echo 'All done!'
+u_pip() {
+  log "- Updating pip"
+  pip3 install -U pip >> update.log
+}
+
+u_nvim() {
+  log "- Updating Neovim"
+  pip3 install neovim --upgrade >> update.log
+}
+
+u_nvim_plugins() {
+  log "- Updating Vim plugins"
+  . "${SETUP_FOLDER}/vim_plugins_setup.sh" >> update.log
+}
+
+u_node() {
+  log "- Updating node packages"
+  sudo npm install -g npm pnpm >> update.log
+  npm update -g >> update.log
+}
+
+u_z() {
+  log "- Update z"
+  . "${SETUP_FOLDER}/z_install.sh" >> update.log
+}
+
+u_symlinks() {
+  log "- Creating config files symlinks"
+  . "${SETUP_FOLDER}/link_config_files.sh" >> update.log
+}
+
+parse_args() {
+  case $1 in
+    "-a"|"--all")
+      u_dotfiles
+      u_brew
+      u_brew_formulaes
+      u_pip
+      u_nvim
+      u_nvim_plugins
+      u_node
+      u_z
+      u_symlinks
+      ;;
+
+    "-b"|"--brew")      u_brew ; u_brew_formulaes ;;
+    "-c"|"--config")    u_symlinks ;;
+    "-d"|"--dotfiles")  u_dotfiles ;;
+    "-no"|"--node")     u_node ;;
+    "-nv"|"--nvim")     u_nvim ; u_nvim_plugins ;;
+    "-p"|"--pip")       u_pip ;;
+    "-z")               u_z ;;
+
+    "-h"|"--help")  usage ;;
+    *)              usage ;;
+  esac
+}
+
+if [[ $@ =~ \-h ]]; then
+  parse_args "-h"
+  exit 1
+fi
+
+count=0
+
+while [[ "$#" > 0 ]]; do
+  if [[ $count == 0 ]]; then
+    echo -e "\n==================================================" >> update.log
+    echo -e "\n[ $(date) ] : \$ $SCRIPT_NAME $@" >> update.log
+  fi
+
+  parse_args "$1"
+
+  if [[ $count > 0 ]]; then log "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" ; fi
+
+  count=$(( count + 1 ))
+
+  shift
+done

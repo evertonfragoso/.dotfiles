@@ -89,20 +89,16 @@ echo
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-echo 'Creating config files symlinks'
+echo 'Git config'
+git config --global init.templatedir '~/.git_template'
 echo
 
-# list of files to link
-config_files='config_files.txt'
-
-while IFS='' read -r line || [[ -n "$line" ]]; do
-  filename=".${line}"
-  echo "Creating link for $filename"
-  # remove the existing link or file
-  rm -f ~/$filename
-  # create new link
-  ln -s $SETUP_FOLDER/$line ~/$filename
-done < "$config_files"
+echo
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'Creating config files symlinks'
+echo
+. "${SETUP_FOLDER}/link_config_files.sh"
+echo
 
 # Reload the profile with the new options
 shell_session_update() { :; }

@@ -17,3 +17,5 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
     cd $bundle_folder/$plugin_name && git pull
   fi
 done < "$nvim_plugins"
+
+cd $SETUP_FOLDER

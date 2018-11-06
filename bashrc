@@ -146,6 +146,10 @@ dckr() {
 #  tmux $TMUXARG
 #fi
 
+# .asdf
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
 # PG aliases
 alias pg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log"
 
