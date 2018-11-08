@@ -102,6 +102,8 @@ parse_args() {
   esac
 }
 
+if [[ -z $1 ]]; then usage; fi
+
 if [[ $@ =~ \-h ]]; then
   parse_args "-h"
   exit 1
