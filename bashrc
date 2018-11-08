@@ -122,12 +122,15 @@ dckr() {
 
   case $1 in
     "console")
+      echo "docker exec -it ${containers_list[choice]} bundle exec rails console"
       docker exec -it ${containers_list[choice]} bundle exec rails console
       ;;
     "psql")
+      echo "docker exec -it ${containers_list[choice]} psql -U postgres"
       docker exec -it ${containers_list[choice]} psql -U postgres
       ;;
     *)
+      echo "docker exec -it ${containers_list[choice]} $*"
       docker exec -it ${containers_list[choice]} $*
       ;;
   esac
