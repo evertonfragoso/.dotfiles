@@ -1,23 +1,26 @@
 #!/usr/bin/env ruby
 
-SCRIPT_FOLDER = File.expand_path(File.dirname(File.dirname(__FILE__)))
-PLUGINS_FOLDER = SCRIPT_FOLDER + '/bundle'
-PLUGINS_LIST_FILE = SCRIPT_FOLDER + '/plugins.txt'
-PLUGINS_LIST = []
+SCRIPT_FOLDER = __dir__.freeze
+PLUGINS_FOLDER = "#{SCRIPT_FOLDER}/bundle".freeze
+PLUGINS_LIST_FILE = "#{SCRIPT_FOLDER}/plugins.txt".freeze
 
-Dir[PLUGINS_FOLDER+'/*'].each do |p|
-  url = %x(cd #{p}; git config --get remote.origin.url)
-  if url =~ /^(https?|git):\/\//
-    PLUGINS_LIST << url.split('.com/').last.split('.git').first
+plugins_list = []
+
+Dir["#{PLUGINS_FOLDER}/*"].each do |folder|
+  url = `cd #{folder} git config --get remote.origin.url`
+  if url =~ %r{^(https?|git):\/\/}
+    plugins_list << url.split('.com/').last.split('.git').first
   elsif url =~ /^(git@)/
-    PLUGINS_LIST << url.split(':').last.split('.git').first
+    plugins_list << url.split(':').last.split('.git').first
   end
 end
 
-PLUGINS_LIST.sort_by! { |o| o.split('/').last }
+plugins_list.sort_by! { |o| o.split('/').last }
 
-File.open(PLUGINS_LIST_FILE, 'w+') do |f|
-  list = PLUGINS_LIST.each { |x| x.strip! }.join("\n")
-  f.write list
-  puts list
+unless plugins_list.empty?
+  File.open(PLUGINS_LIST_FILE, 'w+') do |f|
+    list = plugins_list.each(&:strip!).join("\n")
+    f.write list
+    puts list
+  end
 end
