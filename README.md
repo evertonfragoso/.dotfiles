@@ -12,7 +12,6 @@ My custom VIM Cheat Sheet available [here](https://docs.google.com/spreadsheets/
   - [Git](git)
   - [Bundler](bundler)
   - [Rails](rails)
-  - [NodeJS](nodejs)
 - [Troubleshooting](#troubleshooting)
 
 ### Requirements
@@ -71,10 +70,6 @@ $ ./update
 - `brake`: `bundle exec rake`
 - `mig`: `bundle rake db:migrate`
 - `spec`: `bundle exec rspec`
-
-#### NodeJS
-- `n`: `node`
-- `np`: `pnpm` (Use `pnpm` package manager instead of `npm`)
 
 ### Troubleshooting
 * In case `setup` and/or `update` returns an error when called, check it's permissions because it must be executable. If it's not executable, run the following command:

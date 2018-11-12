@@ -1,6 +1,0 @@
-pnpm
-prettier
-standard
-webpack
-webpack-cli
-yarn

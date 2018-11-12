@@ -89,11 +89,6 @@ alias brake='be rake'
 alias mig='brake db:migrate'
 alias spec='be rspec'
 
-# node aliases
-alias n='node'
-# Use pnpm as default package manager
-alias np='pnpm'
-
 # docker containers
 dckr() {
   if [ -z $1 ]; then

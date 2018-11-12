@@ -11,7 +11,6 @@ Usage:
   -b,  --brew:      Update Homebrew and installed formulaes
   -c,  --config:    (Re)Create config files symlinks
   -d,  --dotfiles:  Pull the latest commits from this dotfiles
-  -no, --node:      Update NodeJS (Warning: this will upgrade to major versions)
   -nv, --nvim:      Update NeoVim (via python pip) and it's installed plugins
   -p,  --pip:       Update python pip
   -z:               Update z script
@@ -59,12 +58,6 @@ u_nvim_plugins() {
   . "${SETUP_FOLDER}/vim_plugins_setup.sh" >> update.log
 }
 
-u_node() {
-  log "- Updating node packages"
-  sudo npm install -g npm pnpm >> update.log
-  npm update -g >> update.log
-}
-
 u_z() {
   log "- Update z"
   . "${SETUP_FOLDER}/z_install.sh" >> update.log
@@ -84,7 +77,6 @@ parse_args() {
       u_pip
       u_nvim
       u_nvim_plugins
-      u_node
       u_z
       u_symlinks
       ;;
@@ -92,8 +84,7 @@ parse_args() {
     "-b"|"--brew")      u_brew ; u_brew_formulaes ;;
     "-c"|"--config")    u_symlinks ;;
     "-d"|"--dotfiles")  u_dotfiles ;;
-    "-no"|"--node")     u_node ;;
-    "-nv"|"--nvim")     u_nvim ; u_nvim_plugins ;;
+    "-n"|"--nvim")      u_nvim ; u_nvim_plugins ;;
     "-p"|"--pip")       u_pip ;;
     "-z")               u_z ;;
 
