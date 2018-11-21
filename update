@@ -39,7 +39,7 @@ u_brew() {
 }
 
 u_brew_formulaes() {
-  log "- Updating formalaes"
+  log "- Updating formulaes"
   . "${SETUP_FOLDER}/brew_formulas.sh" >> update.log
 }
 
