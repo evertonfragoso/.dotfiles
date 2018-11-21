@@ -24,13 +24,20 @@ echo
 echo '---'
 echo 'Installing required formulae'
 echo
-. "${SETUP_FOLDER}/brew_formulas.sh"
+. "${SETUP_FOLDER}/install_update_brew_formulas.sh"
+
+echo
+echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+echo 'Installing asdf'
+echo
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Installing Ruby'
 echo
-echo 'N' | rbenv install $RUBY_VERSION
+asdf install ruby $RUBY_VERSION
+asdf global ruby $RUBY_VERSION
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
@@ -66,7 +73,7 @@ echo
 mkdir -p $VIM_FOLDER/autoload $bundle_folder && \
 curl -LSso $VIM_FOLDER/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-. "${SETUP_FOLDER}/vim_plugins_setup.sh"
+. "${SETUP_FOLDER}/install_update_vim_plugins.sh"
 cd $SETUP_FOLDER
 
 echo
@@ -78,7 +85,7 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Cloning z'
-. "${SETUP_FOLDER}/z_install.sh"
+. "${SETUP_FOLDER}/install_z.sh"
 echo
 
 echo

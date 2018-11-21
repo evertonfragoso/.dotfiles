@@ -8,10 +8,11 @@ SCRIPT_NAME=$0
 usage() {
   cat << EOF >&2
 Usage:
+  -as, --asdf:      Update/install asdf
   -b,  --brew:      Update Homebrew and installed formulaes
   -c,  --config:    (Re)Create config files symlinks
   -d,  --dotfiles:  Pull the latest commits from this dotfiles
-  -nv, --nvim:      Update NeoVim (via python pip) and it's installed plugins
+  -n,  --nvim:      Update NeoVim (via python pip) and it's installed plugins
   -p,  --pip:       Update python pip
   -z:               Update z script
 
@@ -40,7 +41,17 @@ u_brew() {
 
 u_brew_formulaes() {
   log "- Updating formulaes"
-  . "${SETUP_FOLDER}/brew_formulas.sh" >> update.log
+  . "${SETUP_FOLDER}/install_update_brew_formulas.sh" >> update.log
+}
+
+u_asdf() {
+  log "- Updating asdf"
+  if [ ! -d ~/.asdf ]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  else
+    cd ~/.asdf && git pull >> update.log
+  fi
+  cd $SETUP_FOLDER
 }
 
 u_pip() {
@@ -55,12 +66,12 @@ u_nvim() {
 
 u_nvim_plugins() {
   log "- Updating Vim plugins"
-  . "${SETUP_FOLDER}/vim_plugins_setup.sh" >> update.log
+  . "${SETUP_FOLDER}/install_update_vim_plugins.sh" >> update.log
 }
 
 u_z() {
   log "- Update z"
-  . "${SETUP_FOLDER}/z_install.sh" >> update.log
+  . "${SETUP_FOLDER}/install_z.sh" >> update.log
 }
 
 u_symlinks() {
@@ -77,10 +88,12 @@ parse_args() {
       u_pip
       u_nvim
       u_nvim_plugins
+      u_asdf
       u_z
       u_symlinks
       ;;
 
+    "-as"|"--asdf")     u_asdf ;;
     "-b"|"--brew")      u_brew ; u_brew_formulaes ;;
     "-c"|"--config")    u_symlinks ;;
     "-d"|"--dotfiles")  u_dotfiles ;;
@@ -93,10 +106,13 @@ parse_args() {
   esac
 }
 
-if [[ -z $1 ]]; then usage; fi
+if [[ -z $1 ]]; then
+  usage;
+  exit 1
+fi
 
 if [[ $@ =~ \-h ]]; then
-  parse_args "-h"
+  usage
   exit 1
 fi
 
