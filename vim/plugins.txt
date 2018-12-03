@@ -8,6 +8,7 @@ Yggdroot/indentLine
 itchyny/lightline.vim
 cloudhead/neovim-fuzzy
 ervandew/supertab
+SirVer/ultisnips
 bling/vim-bufferline
 tpope/vim-bundler
 alvan/vim-closetag

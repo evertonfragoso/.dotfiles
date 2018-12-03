@@ -7,7 +7,7 @@ PLUGINS_LIST_FILE = "#{SCRIPT_FOLDER}/plugins.txt".freeze
 plugins_list = []
 
 Dir["#{PLUGINS_FOLDER}/*"].each do |folder|
-  url = `cd #{folder} git config --get remote.origin.url`
+  url = `cd #{folder} && git config --get remote.origin.url`
   if url =~ %r{^(https?|git):\/\/}
     plugins_list << url.split('.com/').last.split('.git').first
   elsif url =~ /^(git@)/
