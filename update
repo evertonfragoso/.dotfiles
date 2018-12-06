@@ -8,19 +8,24 @@ SCRIPT_NAME=$0
 usage() {
   cat << EOF >&2
 Usage:
-  -as, --asdf:      Update/install asdf
-  -b,  --brew:      Update Homebrew and installed formulaes
-  -c,  --config:    (Re)Create config files symlinks
-  -d,  --dotfiles:  Pull the latest commits from this dotfiles
-  -n,  --nvim:      Update NeoVim (via python pip) and it's installed plugins
-  -p,  --pip:       Update python pip
-  -z:               Update z script
+  $ update ARGS
 
-  -a,  --all:       Update everything
+Example:
+  $ update d pip
 
-  -h,  --help:      This help message
+ARGS:
+  as, asdf:      Update/install asdf
+  b,  brew:      Update Homebrew and installed formulaes
+  c,  config:    (Re)Create config files symlinks
+  d,  dotfiles:  Pull the latest commits from this dotfiles
+  n,  nvim:      Update NeoVim (via python pip) and it's installed plugins
+  p,  pip:       Update python pip
+  z:             Update z script
+
+  a,  all:       Update everything
+
+  h,  help:      This help message
 EOF
-  exit 1
 }
 
 log() {
@@ -80,7 +85,7 @@ u_symlinks() {
 
 parse_args() {
   case $1 in
-    "-a"|"--all")
+    "a"|"all")
       u_dotfiles
       u_brew
       u_brew_formulaes
@@ -92,35 +97,46 @@ parse_args() {
       u_symlinks
       ;;
 
-    "-as"|"--asdf")     u_asdf ;;
-    "-b"|"--brew")      u_brew ; u_brew_formulaes ;;
-    "-c"|"--config")    u_symlinks ;;
-    "-d"|"--dotfiles")  u_dotfiles ;;
-    "-n"|"--nvim")      u_nvim ; u_nvim_plugins ;;
-    "-p"|"--pip")       u_pip ;;
-    "-z")               u_z ;;
+    "as"|"asdf")     u_asdf ;;
+    "b"|"brew")      u_brew ; u_brew_formulaes ;;
+    "c"|"config")    u_symlinks ;;
+    "d"|"dotfiles")  u_dotfiles ;;
+    "n"|"nvim")      u_nvim ; u_nvim_plugins ;;
+    "p"|"pip")       u_pip ;;
+    "z")             u_z ;;
 
-    "-h"|"--help")  usage ;;
-    *)              usage ;;
+    "h"|"help")  usage ;;
+    *)           usage ;;
   esac
 }
 
 if [[ -z $1 ]]; then
-  usage;
-  exit 1
+  usage
+  echo "  q,  quit:      Exit"
+
+  choice=""
+  while [ -z $choice ]; do
+    echo -n "Enter the option(s) and press [ENTER]: "
+    read choice
+  done
+
+  if [[ $choice =~ ^q ]]; then exit 0; fi
+
+  . $0 $choice
+  exit 0
 fi
 
-if [[ $@ =~ \-h ]]; then
+if [[ $@ =~ h ]]; then
   usage
-  exit 1
+  exit 0
 fi
 
 count=0
 
 while [[ "$#" > 0 ]]; do
   if [[ $count == 0 ]]; then
-    echo -e "\n==================================================" >> update.log
-    echo -e "\n[ $(date) ] : \$ $SCRIPT_NAME $@" >> update.log
+    log "=================================================="
+    log "[ $(date) ] : \$ $SCRIPT_NAME $@"
   fi
 
   parse_args "$1"

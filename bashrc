@@ -34,10 +34,12 @@ cleanup() {
   brew upgrade $(brew list)
   brew cleanup
 
-  cache_folder=~/Library/Caches/Homebrew
-  for i in $(ls $cache_folder); do
-    rm "${cache_folder}/${i}"
-  done
+  cache_folder=~/Library/Caches/Homebrew/downloads
+  items=$(ls $cache_folder)
+
+  if [[ -z $items ]]; then return; fi
+
+  for i in $items; do rm "${cache_folder}/${i}"; done
 }
 
 # git aliases
