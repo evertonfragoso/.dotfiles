@@ -76,6 +76,10 @@ curl -LSso $VIM_FOLDER/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 . "${SETUP_FOLDER}/install_update_vim_plugins.sh"
 cd $SETUP_FOLDER
 
+# add my favorite colorscheme :)
+curl -LSso $VIM_FOLDER/autoload/togglebg.vim https://raw.githubusercontent.com/altercation/vim-colors-solarized/master/autoload/togglebg.vim
+curl -LSso $VIM_FOLDER/colors/solarized.vim https://raw.githubusercontent.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Downloading git-prompt'

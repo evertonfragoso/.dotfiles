@@ -1,4 +1,6 @@
 syntax on
+set background=light
+colorscheme solarized
 
 " set mouse
 set mouse=a
