@@ -51,11 +51,7 @@ u_brew_formulaes() {
 
 u_asdf() {
   log "- Updating asdf"
-  if [ ! -d ~/.asdf ]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-  else
-    asdf update >> update.log
-  fi
+  . "${SETUP_FOLDER}/install_update_asdf.sh" >> update.log
 }
 
 u_pip() {

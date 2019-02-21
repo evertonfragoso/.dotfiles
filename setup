@@ -30,7 +30,7 @@ echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'Installing asdf'
 echo
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+. "${SETUP_FOLDER}/install_update_asdf.sh"
 
 echo
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
