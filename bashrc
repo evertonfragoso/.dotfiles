@@ -122,6 +122,10 @@ dckr() {
       echo "docker exec -it ${containers_list[choice]} bundle exec rails console"
       docker exec -it ${containers_list[choice]} bundle exec rails console
       ;;
+    "rspec")
+      echo "docker exec -it ${containers_list[choice]} bundle exec rspec $2"
+      docker exec -it ${containers_list[choice]} bundle exec rspec $2
+      ;;
     "psql")
       echo "docker exec -it ${containers_list[choice]} psql -U postgres"
       docker exec -it ${containers_list[choice]} psql -U postgres
