@@ -106,6 +106,11 @@ map <leader>j <C-w>j
 map <leader>k <C-w>k
 map <leader>l <C-w>l
 
+" Expand current panel
+map mm <C-w>\| <bar> <C-w>_
+" Divide window equally
+map nm <C-w>=
+
 " New file
 nmap <C-n> :call NewFile(input('New file name: '))<cr>
 function! NewFile(filename)
