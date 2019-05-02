@@ -137,6 +137,17 @@ dckr() {
   esac
 }
 
+# CSV parser
+csv() {
+  cat="cat $1"
+  col="column -s ',;' -t"
+  if [ "$1" == '--less' ] || [ "$2" == '--less' ]; then
+    exec $cat | $col | less -#2 -N -S
+  else
+    exec $cat | $col
+  fi
+}
+
 # Tmux aliases
 #alias tmux='tmux -2'
 #alias ta='tmux attach -t'
