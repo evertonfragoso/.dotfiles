@@ -101,10 +101,10 @@ set splitbelow
 set splitright
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
-map <leader>h <C-w>h
-map <leader>j <C-w>j
-map <leader>k <C-w>k
-map <leader>l <C-w>l
+map <leader><Left> <C-w>h
+map <leader><Down> <C-w>j
+map <leader><Up> <C-w>k
+map <leader><Right> <C-w>l
 
 " Expand current panel
 map mm <C-w>\| <bar> <C-w>_
@@ -127,8 +127,8 @@ noremap <leader>w :w <cr>
 nnoremap <leader><leader> <c-^>
 
 " Buffer navigation
-nnoremap <leader><Left> :bp <cr>
-nnoremap <leader><Right> :bn <cr>
+" nnoremap <leader><Left> :bp <cr>
+" nnoremap <leader><Right> :bn <cr>
 
 " List buffers and prompt for a number
 nnoremap <leader>b :buffers<CR>:buffer<Space>
@@ -147,6 +147,14 @@ nmap <leader>ai mzgg=G`z
 
 " Folding
 map <leader>- za
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+let g:rspec_command = "!bundle exec rspec {spec}"
 
 " Plugins ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 execute pathogen#infect()

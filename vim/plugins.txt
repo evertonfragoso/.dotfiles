@@ -26,6 +26,7 @@ mxw/vim-jsx
 sheerun/vim-polyglot
 tpope/vim-rails
 tpope/vim-repeat
+thoughtbot/vim-rspec
 mhinz/vim-sayonara
 honza/vim-snippets
 tpope/vim-surround
