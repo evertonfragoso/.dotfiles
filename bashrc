@@ -8,8 +8,8 @@ export EDITOR="nvim"
 # Report terminal type
 #export TERM=xterm-256color
 
-# Bat color for light background terminal
-export BAT_THEME=GitHub
+# Bat color for dark background terminal
+export BAT_THEME="Monokai Extended"
 
 alias v=$EDITOR
 alias vi=$EDITOR
