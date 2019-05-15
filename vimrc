@@ -1,5 +1,5 @@
 syntax on
-set background=light
+set background=dark
 colorscheme solarized
 
 " set mouse
