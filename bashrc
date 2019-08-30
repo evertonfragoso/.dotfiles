@@ -161,6 +161,21 @@ csv() {
 #  tmux $TMUXARG
 #fi
 
+# python server
+pyserver() {
+  if [[ -z $1 ]]; then port=8000; else port=$1; fi
+
+  if command -v python3 2>/dev/null; then c="3 -m http.server"
+  elif command -v python 2>/dev/null; then c=" -m SimpleHTTPServer"
+  else
+    echo "Python is required! duh"
+    exit 1
+  fi
+
+  echo "<C-c> to exit"
+  python$c $port
+}
+
 # .asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
