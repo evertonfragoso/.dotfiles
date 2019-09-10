@@ -9,6 +9,7 @@ log/*
 tmp/*
 tags*
 spec/examples.txt
+node_modules/
 
 # PNPM
 shrinkwrap.yaml

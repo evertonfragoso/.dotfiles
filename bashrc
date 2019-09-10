@@ -189,5 +189,10 @@ alias mysql="mysql.server"
 # flush DNS
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
+# Clear stupid .DS_Store files
+dsstore_rm() {
+  find . -name ".DS_Store" -exec rm {} \; -exec echo "Removing " {} \;
+}
+
 # thefuck
 eval "$(thefuck --alias)"
