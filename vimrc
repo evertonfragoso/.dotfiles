@@ -166,16 +166,18 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
-    \ 'jsx': ['prettier', 'standard'],
-    \ 'javascript': ['prettier', 'standard'],
-    \ 'css': ['prettier', 'standard'],
-    \ 'html': ['prettier', 'standard'],
+    \ 'ruby': ['standardrb', 'rubocop'],
+    \ 'jsx': ['prettier', 'eslint'],
+    \ 'javascript': ['prettier', 'eslint'],
+    \ 'css': ['prettier', 'eslint'],
+    \ 'html': ['prettier', 'eslint'],
     \ }
 let g:ale_fixers = {
-    \ 'jsx': ['prettier', 'standard'],
-    \ 'javascript': ['prettier', 'standard'],
-    \ 'css': ['prettier', 'standard'],
-    \ 'html': ['prettier', 'standard'],
+    \ 'ruby': ['standardrb'],
+    \ 'jsx': ['prettier', 'eslint'],
+    \ 'javascript': ['prettier', 'eslint'],
+    \ 'css': ['prettier', 'eslint'],
+    \ 'html': ['prettier', 'eslint'],
     \ }
 " StandardJS on save
 autocmd bufwritepost *.js silent !standard --fix %
@@ -287,6 +289,9 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
 " Emmet
 let g:user_emmet_install_global = 0
 autocmd FileType html,erb,jsx EmmetInstall
+
+" EditorConfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
 
 " Fuzzy
 nnoremap <C-p> :FuzzyOpen<CR>

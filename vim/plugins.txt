@@ -3,10 +3,12 @@ jiangmiao/auto-pairs
 chriskempson/base16-vim
 ruanyl/coverage.vim
 dyng/ctrlsf.vim
+editorconfig/editorconfig-vim
 mattn/emmet-vim
 Yggdroot/indentLine
 itchyny/lightline.vim
 cloudhead/neovim-fuzzy
+testdouble/standard
 ervandew/supertab
 SirVer/ultisnips
 bling/vim-bufferline
@@ -15,6 +17,7 @@ alvan/vim-closetag
 tpope/vim-commentary
 tpope/vim-dispatch
 junegunn/vim-easy-align
+tpope/vim-endwise
 epilande/vim-es2015-snippets
 tpope/vim-eunuch
 tpope/vim-fugitive
