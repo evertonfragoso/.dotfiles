@@ -79,20 +79,21 @@ u_symlinks() {
   . "${SETUP_FOLDER}/link_config_files.sh" >> update.log
 }
 
+u_all() {
+  u_dotfiles
+  u_brew
+  u_brew_formulaes
+  u_pip
+  u_nvim
+  u_nvim_plugins
+  u_asdf
+  u_z
+  u_symlinks
+}
+
 parse_args() {
   case $1 in
-    "a"|"all")
-      u_dotfiles
-      u_brew
-      u_brew_formulaes
-      u_pip
-      u_nvim
-      u_nvim_plugins
-      u_asdf
-      u_z
-      u_symlinks
-      ;;
-
+    "a"|"all")       u_all ;;
     "as"|"asdf")     u_asdf ;;
     "b"|"brew")      u_brew ; u_brew_formulaes ;;
     "c"|"config")    u_symlinks ;;
@@ -118,7 +119,7 @@ if [[ -z $1 ]]; then
 
   if [[ $choice =~ ^q ]]; then exit 0; fi
 
-  . $0 $choice
+  . $SCRIPT_NAME $choice
   exit 0
 fi
 

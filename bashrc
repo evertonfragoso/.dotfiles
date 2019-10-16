@@ -73,11 +73,30 @@ clone() {
     echo '    Attention: this format uses github to clone'
   fi
 }
+# delete local merged branches
+alias gd='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
 
-# Travis (and some more in the future)
-travis() {
-  open "https://travis-ci.com/$(git remote get-url origin | grep -oE "[^\/:]\w+/[^\.]+")"
+# CI
+ci() {
+  choice=$1
+  if [ -z $choice ]; then
+    while [ -z $choice ]; do
+      echo -n "Which CI? [(t)ravis|(c)ircle]: "
+      read choice
+    done
+  fi
+
+  case $choice in
+    "c"|"circle") ci_url='circleci.com/gh' ;;
+    "t"|"travis") ci_url='travis-ci.com' ;;
+  esac
+
+  remote_url="$(git remote get-url origin | grep -oE "[^\/:]\w+/[^\.]+")"
+  open "https://${ci_url}/${remote_url}"
 }
+
+alias travis="ci t"
+alias circle="ci c"
 
 # Bundler aliases
 alias b='bundle'
@@ -196,3 +215,5 @@ dsstore_rm() {
 
 # thefuck
 eval "$(thefuck --alias)"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
