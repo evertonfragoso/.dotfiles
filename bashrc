@@ -19,6 +19,7 @@ alias vim=$EDITOR
 export LS_COLORS=Exfxcxdxbxegedabagacad
 alias l="ls -lG $@"
 alias la="l -A $@"
+alias cd..="cd .."
 
 # z navigator
 . $HOME/z/z.sh
