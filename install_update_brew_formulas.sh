@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # for universal-ctags - remove when is part of Homebrew repository
 brew tap universal-ctags/universal-ctags

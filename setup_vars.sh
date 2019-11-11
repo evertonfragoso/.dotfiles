@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # TODO: make it get the latest version instead of a fixed version
 export RUBY_VERSION=2.6.3
