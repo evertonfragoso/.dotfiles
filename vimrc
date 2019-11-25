@@ -101,10 +101,10 @@ set splitbelow
 set splitright
 map <leader>s :split <cr>
 map <leader>v :vsplit <cr>
-map <leader><Left> <C-w>h
-map <leader><Down> <C-w>j
-map <leader><Up> <C-w>k
-map <leader><Right> <C-w>l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " Expand current panel
 map mm <C-w>\| <bar> <C-w>_
@@ -121,14 +121,14 @@ function! NewFile(filename)
 endfunction
 
 " Save file
-noremap <leader>w :w <cr>
+noremap <C-s> :w <cr>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
 " Buffer navigation
-" nnoremap <leader><Left> :bp <cr>
-" nnoremap <leader><Right> :bn <cr>
+nnoremap <leader><Left> :bp <cr>
+nnoremap <leader><Right> :bn <cr>
 
 " List buffers and prompt for a number
 nnoremap <leader>b :buffers<CR>:buffer<Space>
@@ -301,7 +301,7 @@ let g:jsx_ext_required = 0
 let g:rubycomplete_rails = 1
 
 " Sayonara
-nnoremap <leader>q :Sayonara<cr>
+nnoremap <C-q> :Sayonara<cr>
 
 " Deoplete
 " let g:deoplete#enable_at_startup = 1
