@@ -46,7 +46,7 @@ set nojoinspaces
 let g:html_indent_tags = 'li\|p'
 
 " highlight the current line
-" set cursorline
+set cursorline
 " hi CursorLine cterm=NONE ctermbg=grey ctermfg=white guibg=grey guifg=white
 " hi CursorColumn cterm=NONE ctermbg=grey ctermfg=white guibg=grey guifg=white
 
