@@ -12,7 +12,6 @@ perl
 postgresql
 python
 python3
-rbenv
 ruby-build
 the_silver_searcher
 thefuck
