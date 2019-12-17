@@ -31,8 +31,6 @@ mcd() {
 
 # Homebrew
 cleanup() {
-  brew update
-  brew upgrade $(brew list)
   brew cleanup
 
   cache_folder=~/Library/Caches/Homebrew/downloads
