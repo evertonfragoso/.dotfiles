@@ -17,7 +17,7 @@ alias vim=$EDITOR
 
 # bash ls aliases
 export LS_COLORS=Exfxcxdxbxegedabagacad
-alias l="ls -lG $@"
+alias l="ls -lhG $@"
 alias la="l -A $@"
 alias cd..="cd .."
 

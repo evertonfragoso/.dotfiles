@@ -13,6 +13,7 @@ else
 fi
 
 echo "Importing NodeJS release team\'s OpenPGP keys to main keyring:"
-. ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+cd ~/.asdf/plugins/nodejs/bin
+. import-release-team-keyring
 
 cd $SETUP_FOLDER
