@@ -56,12 +56,22 @@ u_asdf() {
 
 u_pip() {
   log "- Updating pip"
-  pip3 install -U pip >> update.log
+  # Python 2
+  echo "Python2" >> update.log
+  python -m pip install --user --upgrade pip >> update.log
+  # Python 3
+  echo "Python3" >> update.log
+  python3 -m pip install --user --upgrade pip >> update.log
 }
 
 u_nvim() {
   log "- Updating Neovim"
-  pip3 install neovim --upgrade >> update.log
+  # Python 2
+  echo "Python2" >> update.log
+  python -m pip install --user --upgrade pynvim >> update.log
+  # Python 3
+  echo "Python3" >> update.log
+  python3 -m pip install --user --upgrade pynvim >> update.log
 }
 
 u_nvim_plugins() {
