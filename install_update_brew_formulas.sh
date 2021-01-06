@@ -4,7 +4,7 @@
 brew tap universal-ctags/universal-ctags
 
 brew_list='brew_list.txt'
-installed_formulae=$(brew list)
+installed_formulae=$(brew list --formula)
 
 # Install formulas from list
 while IFS='' read -r line || [[ -n "$line" ]]; do
